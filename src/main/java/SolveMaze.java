@@ -16,11 +16,14 @@ public class SolveMaze {
      * @param unused unused input arguments
      */
 
+
+
+
     public static void main(final String[] unused) {
         /*
          * Create a new 10 x 10 maze. Feel free to change these values.
          */
-        Maze maze = new Maze(10, 10);
+        Maze maze = new Maze(1000, 1000);
 
         /*
          * Pick (0, 0), the bottom left corner, as the starting point.
@@ -33,10 +36,53 @@ public class SolveMaze {
          * You should be able to solve a 10 x 10 maze in (far fewer than) 1000 steps.
          * Feel free to adjust this number if you experiment with other mazes.
          */
-        for (int step = 0; step < 1000; step++) {
-            // Implement your maze solving algorithm here
-        }
+        int steps = 0;
 
+
+        while (!maze.isFinished()) {
+            /*
+            try {
+                Thread.sleep(1000);
+            }
+            catch (Exception e) {
+
+            }
+            */
+            maze.turnRight();
+            while (!maze.canMove()) {
+                maze.turnLeft();
+            }
+            maze.move();
+            steps++;
+        }
+        /*
+        while (!maze.isFinished()) {
+
+            if (steps % 100 == 0) {
+                try {
+                    Thread.sleep(100);
+                } catch (Exception e) {
+
+                }
+            }
+
+
+            if (maze.canMove()) {
+                maze.move();
+            }
+
+            double rand = Math.random()*10;
+            if (rand > 5) {
+                maze.turnLeft();
+            }
+            else {
+                maze.turnRight();
+            }
+            //System.out.println(maze);
+            steps++;
+        }
+        */
+        System.out.println(steps);
         if (maze.isFinished()) {
             System.out.println("You solved the maze!");
         } else {
